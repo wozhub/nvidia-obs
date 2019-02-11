@@ -1,0 +1,2 @@
+# Exclude NVIDIA driver installers
+NVIDIA-Linux-*
