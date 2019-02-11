@@ -26,11 +26,11 @@ docker run -ti \
   --ipc='host' \
   --device=/dev/nvidia-modeset \
   --device=/dev/nvidia-uvm \
-	--device=/dev/nvidia0 \
+  --device=/dev/nvidia0 \
   --device=/dev/nvidiactl \
-	--device=/dev/dri/card0 \
+  --device=/dev/dri/card0 \
   --device=/dev/dri/renderD128 \
-	--volume=${OUTPUT_FOLDER}:/root \
+  --volume=${OUTPUT_FOLDER}:/root \
   --volume=/tmp/.X11-unix:/tmp/.X11-unix \
   --volume=/dev/shm:/dev/shm \
   --volume=/run/user/${USER_UID}/pulse:/run/user/1000/pulse \

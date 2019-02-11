@@ -4,7 +4,7 @@ FROM ubuntu:18.04
 VOLUME /root
 
 # Nvidia -- driver must match host, version > 378.13
-ENV NVIDIA_DRV NVIDIA-Linux-x86_64-384.130.run 
+ENV NVIDIA_DRV NVIDIA-Linux-x86_64-390.77.run
 
 ENV FFMPEG_SRC_DIR /tmp/ffmpeg
 ENV FFMPEG_DST_DIR /opt/ffmpeg
