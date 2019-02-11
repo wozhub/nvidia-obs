@@ -24,6 +24,7 @@ To run an instance just:
 
 ## TODO
 
-- [ ] Tests?
+- [x] Test recording
+- [ ] Test streaming
 - [ ] Enhance with CFLAGS/LDFLAGS?
 - [ ] Try building on top of docker images provided by NVIDIA
