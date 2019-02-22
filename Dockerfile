@@ -4,20 +4,27 @@ FROM ubuntu:18.04
 VOLUME /root
 
 # Nvidia -- driver must match host, version > 378.13
-ENV NVIDIA_DRV NVIDIA-Linux-x86_64-390.77.run
+ARG NVIDIA_VERSION
 
 ENV FFMPEG_SRC_DIR /tmp/ffmpeg
 ENV FFMPEG_DST_DIR /opt/ffmpeg
 
 RUN export DEBIAN_FRONTEND=noninteractive
 
-ADD ${NVIDIA_DRV} /tmp/NVIDIA-DRIVER.run
-RUN apt-get update && apt-get install -y \
-	kmod \
-    && rm -rf /var/lib/apt/lists/* \
-    && sh /tmp/NVIDIA-DRIVER.run -a -N --ui=none --no-kernel-module --install-libglvnd \
-    && rm /tmp/NVIDIA-DRIVER.run
+# NVIDIA
+RUN test -n "$NVIDIA_VERSION" || ( echo "Please provide nvidia driver version" && exit 1)
 
+ADD NVIDIA-Linux-x86_64-${NVIDIA_VERSION}.run /tmp/nvidia-installer.run
+RUN ${SUDO} apt-get update && ${SUDO} apt-get install -y \
+        kmod \
+    && ${SUDO} rm -rf /var/lib/apt/lists/* \
+    && ${SUDO} sh /tmp/nvidia-installer.run -a -N --ui=none --no-kernel-module --install-libglvnd \
+    && ${SUDO} rm /tmp/nvidia-installer.run
+
+
+
+# FIX
+RUN sed -i 's|http://archive.ubuntu|http://ar.archive.ubuntu|g' /etc/apt/sources.list 
 
 # FFmpeg -- build dependencies
 RUN sed -i 's/^# deb-src/deb-src/g' /etc/apt/sources.list \

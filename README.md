@@ -10,12 +10,10 @@
 
 ## Build
 
-1. Find out your nvidia-driver version using `nvidia-smi --query | grep ^Driver`
-2. Download nvidia-driver installer to match your version.
-Try googling `NVIDIA-Linux-x86_64-XXX.XX.run download` where XXX.XX is your version (ie: 390.77)
-3. Edit the `ENV NVIDIA_DRV` line in `Dockerfile` accordingly.
-4. Build the image.
-
+Build with:
+```bash
+./build.sh
+```
 
 ## Run
 
@@ -32,6 +30,9 @@ By default, obs configuration and recording output will be written to ${HOME}/ob
 ## TODO
 
 - [x] Test recording
-- [ ] Test streaming
+- [x] Test streaming
 - [ ] Enhance with CFLAGS/LDFLAGS?
 - [ ] Try building on top of docker images provided by NVIDIA
+- [ ] `run.sh`: Detect correct video card (in case of discrete graphics)
+- [ ] `run.sh`: Detect video capture devices (ie: webcams)
+- [ ] Test NVENC (new) when obs 23 is out

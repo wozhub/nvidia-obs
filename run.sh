@@ -28,8 +28,9 @@ docker run -ti \
   --device=/dev/nvidia-uvm \
   --device=/dev/nvidia0 \
   --device=/dev/nvidiactl \
-  --device=/dev/dri/card0 \
-  --device=/dev/dri/renderD128 \
+  --device=/dev/dri/card1 \
+  --device=/dev/dri/renderD129 \
+  --device=/dev/video0 \
   --volume=${OUTPUT_FOLDER}:/root \
   --volume=/tmp/.X11-unix:/tmp/.X11-unix \
   --volume=/dev/shm:/dev/shm \
